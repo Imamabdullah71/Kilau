@@ -10,21 +10,22 @@
     <main class="container">
         @include('komponen.pesan')
             <!-- START FORM -->
-        <form action='{{ url('dataAnak') }}' method='post'>
+        <form action='{{ url('dataAnak/'.$data->nama) }}' method='post'>
             @csrf
+            @method('PUT')
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <a href="{{ url('dataAnak') }}" class="btn btn-outline-info"><< Kembali</a>
                 <div class="mb-3 row">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name='nama' value="{{ Session::get('nama') }}" id="nama">
+                        <input type="text" class="form-control" name='nama' value="{{ $data->nama }}" id="nama">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="gender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                     <div class="col-sm-10">
                     <select name="gender" id="gender" class="form-control">
-                        <option value="{{ Session::get('gender') }}">Pilih</option>
+                        <option value="{{ $data->gender }}">Pilih</option>
                         <option value="Laki-Laki">Laki-Laki</option>
                         <option value="Perempuan">Perempuan</option>
                     </select>
@@ -35,7 +36,7 @@
                     <label for="agama" class="col-sm-2 col-form-label">Agama</label>
                     <div class="col-sm-10">
                     <select name="agama" id="agama" class="form-control">
-                        <option value="{{ Session::get('agama') }}">Pilih</option>
+                        <option value="{{ $data->agama }}">Pilih</option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen Protestan">Kristen Protestan</option>
                         <option value="Kristen Katolik">Kristen Katolik</option>
@@ -48,32 +49,32 @@
                 <div class="mb-3 row">
                     <label for="tempatLahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{ Session::get('tempatLahir') }}" class="form-control" name='tempatLahir' id="tempatLahir">
+                        <input type="text" value="{{ $data->tempatLahir }}" class="form-control" name='tempatLahir' id="tempatLahir">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="tanggalLahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                     <div class="col-sm-10">
-                        <input type="date" value="{{ Session::get('tanggalLahir') }}" class="form-control" name='tanggalLahir' id="tanggalLahir">
+                        <input type="date" value="{{ $data->tanggalLahir }}" class="form-control" name='tanggalLahir' id="tanggalLahir">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="anakKe" class="col-sm-2 col-form-label">Anak Ke</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{ Session::get('anakKe') }}" class="form-control" name='anakKe' id="anakKe">
+                        <input type="text" value="{{ $data->anakKe }}" class="form-control" name='anakKe' id="anakKe">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="dariBersaudara" class="col-sm-2 col-form-label">Dari .. Bersudara</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{ Session::get('dariBersaudara') }}" class="form-control" name='dariBersaudara' id="dariBersaudara">
+                        <input type="text" value="{{ $data->dariBersaudara }}" class="form-control" name='dariBersaudara' id="dariBersaudara">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="statusCPB" class="col-sm-2 col-form-label">Status CPB</label>
                     <div class="col-sm-10">
                     <select name="statusCPB" id="statusCPB" class="form-control">
-                        <option value="{{ Session::get('statusCPB') }}">Pilih</option>
+                        <option value="{{ $data->statusCPB }}">Pilih</option>
                         <option value="CPB">CPB</option>
                         <option value="NPB">NPB</option>
                     </select>

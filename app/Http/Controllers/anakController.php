@@ -86,7 +86,8 @@ class anakController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = dataAnak::where('nama', $id)->first();
+        return view('anak.edit')->with('data', $data);
     }
 
     /**
@@ -94,7 +95,39 @@ class anakController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'gender'=>'required',
+            'agama'=>'required',
+            'tempatLahir'=>'required',
+            'tanggalLahir'=>'required',
+            'anakKe'=>'required|numeric',
+            'dariBersaudara'=>'required|numeric',
+            'statusCPB'=>'required',
+        ],[
+            'nama.required'=> 'Nama wajib diisi',
+            'gender.required'=> 'Jenis Kelamin wajib diisi',
+            'agama.required'=> 'Agama wajib diisi',
+            'tempatLahir.required'=> 'Tempat Lahir wajib diisi',
+            'tanggalLahir.required'=> 'Tanggal Lahir wajib diisi',
+            'anakKe.required'=> 'Anak Ke wajib diisi',
+            'anakKe.numeric'=> 'Anak Ke wajib dalam bentuk angka',
+            'dariBersaudara.required'=> 'Dari .. Bersaudara wajib diisi',
+            'dariBersaudara.numeric'=> 'Dari .. Bersaudara wajib dalam bentuk angka',
+            'statusCPB.required'=> 'Status CPB wajib diisi',
+        ]);
+        $data = [
+            'nama' => $request->nama,
+            'gender' => $request->gender,
+            'agama' => $request->agama,
+            'tempatLahir' => $request->tempatLahir,
+            'tanggalLahir' => $request->tanggalLahir,
+            'anakKe' => $request->anakKe,
+            'dariBersaudara' => $request->dariBersaudara,
+            'statusCPB' => $request->statusCPB,
+        ];
+        dataAnak::where('nama',$id)->update($data);
+        return redirect()->to('dataAnak')->with('success','Data Berhasil diubah');
     }
 
     /**

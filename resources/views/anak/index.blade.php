@@ -45,7 +45,7 @@
                     <td>{{ $item->dariBersaudara }}</td>
                     <td>{{ $item->statusCPB }}</td>
                     <td>
-                        <a href='' class="btn btn-warning btn-sm">Edit</a>
+                        <a href='{{ url('dataAnak/'.$item->nama.'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
                         <a href='' class="btn btn-danger btn-sm">Del</a>
                     </td>
                 </tr>
